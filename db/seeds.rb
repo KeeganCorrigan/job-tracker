@@ -4,10 +4,10 @@ Job.destroy_all
 COMPANIES = ["ESPN", "Aetna", "United Airlines", "Denver Public Schools", "Shopify", "Starbucks", "Pivotal Labs", "Captain U"]
 JOBS = ["Engineering", "Development", "Dev Ops", "Quality Assurance", "Teacher", "Product Manager", "Consultant", "Community Manager"]
 CITIES = ["Seattle", "Denver", "Portland", "Indianapolis", "Madison", "Orlando", "San Diego", "Austin", "Las Vegas", "Little Rock", "Boise", "Eugene", "Oakland"]
-category_1 = Category.create(title: 'category1')
-category_2 = Category.create(title: 'category2')
-category_3 = Category.create(title: 'category3')
-category_4 = Category.create(title: 'category4')
+category_1 = Category.create(title: 'Web Development')
+category_2 = Category.create(title: 'Music')
+category_3 = Category.create(title: 'Education')
+category_4 = Category.create(title: 'Finance')
 CATEGORIES = [category_1, category_2, category_3, category_4]
 
 COMPANIES.each do |name|

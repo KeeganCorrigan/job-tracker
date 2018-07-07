@@ -19,10 +19,12 @@ describe "User sees a specific job" do
     expected = "#{job.title} was successfully deleted!"
 
     visit company_job_path(company, job)
-    
+
     click_link "Delete"
 
     expect(current_path).to eq(company_jobs_path(company))
+
+    save_and_open_page
 
     expect(page).to have_content(expected)
 

@@ -24,8 +24,6 @@ describe "User sees a specific job" do
 
     expect(current_path).to eq(company_jobs_path(company))
 
-    save_and_open_page
-
     expect(page).to have_content(expected)
 
     within("#job-container") do

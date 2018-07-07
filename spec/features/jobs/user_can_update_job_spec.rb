@@ -6,11 +6,11 @@ describe "User visits job edit" do
     category_1 = Category.create!(title: "iuasd")
     job = company.jobs.create!(title: 'lkjds', description: 'description', level_of_interest: 22, city: 'denver', category: category_1)
 
-    visit company_job_path(company, job)
+    visit job_path(job)
 
     click_on "Edit"
 
-    expect(current_path).to eq(edit_company_job_path(company, job))
+    expect(current_path).to eq(edit_job_path(job))
 
     fill_in "job[title]", with: "Developer"
     fill_in "job[description]", with: "So fun!"
@@ -21,7 +21,7 @@ describe "User visits job edit" do
 
     click_on "Update"
 
-    expect(current_path).to eq(company_job_path(company, job))
+    expect(current_path).to eq(job_path(job))
     expect(page).to have_content("ESPN")
     expect(page).to have_content("Developer")
     expect(page).to have_content("80")

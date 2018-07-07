@@ -11,7 +11,7 @@
   <%= f.label :city %>
   <%= f.text_field :city %>
 
-   <%= f.collection_select :category_id, Category.order(:title), include_blank: true, id:"category-name-dropdown" %>
+  <%= f.collection_select :category_id, Category.order(:title), :id, :title %>
 
   <%= f.submit %>
 <% end %>

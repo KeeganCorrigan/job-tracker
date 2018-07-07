@@ -7,11 +7,14 @@ describe "User creates a new job" do
 
     visit new_company_job_path(company)
 
+    save_and_open_page
+
     fill_in "job[title]", with: "Developer"
     fill_in "job[description]", with: "So fun!"
     fill_in "job[level_of_interest]", with: 80
     fill_in "job[city]", with: "Denver"
-    find('#category-name-dropdown').find(:xpath,'option[1]').select_option
+
+    find('#job_category_id').find(:xpath,'option[1]').select_option
 
     click_button "Create"
 

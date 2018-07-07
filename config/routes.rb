@@ -7,7 +7,7 @@ Rails.application.routes.draw do
 
   resources :dashboard, only: [:index]
 
-  resources :categories, only: [:index, :show, :new]
+  resources :categories
 
   resources :jobs
 

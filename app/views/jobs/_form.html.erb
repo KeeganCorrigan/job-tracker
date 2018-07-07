@@ -12,6 +12,7 @@
   <%= f.text_field :city %>
 
   <%= f.collection_select :category_id, Category.order(:title), :id, :title %>
+  <%= f.collection_select :company_id, Company.order(:name), :id, :name %>
 
   <%= f.submit %>
 <% end %>

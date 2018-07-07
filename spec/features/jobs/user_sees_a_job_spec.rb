@@ -13,7 +13,7 @@ describe "User sees a specific job" do
     expect(page).to have_content(job.level_of_interest)
   end
 
-  scenario "a user can delete a job from show" do
+  xit "a user can delete a job from show" do
     category = Category.create!(title: "iuhasd")
     company = Company.create(name: "ESPN")
     job = company.jobs.create!(title: "Developer", level_of_interest: 70, city: "Denver", category: category)

@@ -4,7 +4,7 @@ describe "User sees one company" do
   scenario "a user sees a company" do
     company = Company.create!(name: "ESPN")
     category = Category.create!(title: "iuhasd")
-    company.jobs.create!(title: "Developer", level_of_interest: 90, city: "Denver", category: category)
+    company.jobs.create!(title: "Developer", level_of_interest: 90, description: 'adfj', city: "Denver", category: category)
 
     visit company_path(company)
 

@@ -22,7 +22,7 @@ describe 'user visits categories index' do
     expect(page).to have_content(@category_3.title)
   end
 
-  xit 'should link to category show' do
+  it 'should link to category show' do
 
     visit categories_path
 

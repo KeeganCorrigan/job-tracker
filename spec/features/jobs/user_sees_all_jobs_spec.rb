@@ -23,5 +23,4 @@ describe "User sees all jobs" do
 
     expect(current_path).to eq(new_company_job_path(company))
   end
-
 end

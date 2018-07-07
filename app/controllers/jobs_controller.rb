@@ -1,20 +1,22 @@
 class JobsController < ApplicationController
   def index
-    @company = Company.find(params[:company_id])
-    @jobs = @company.jobs
+    if params[:category]
+      cat = Category.where(title: params[:category]).first.id
+      @jobs = Job.where(category_id: cat)
+    else
+      @jobs = Job.all.includes(:company)
+    end
   end
 
   def new
-    @company = Company.find(params[:company_id])
-    @job = Job.new()
+    @job = Job.new
   end
 
   def create
-    @company = Company.find(params[:company_id])
-    @job = @company.jobs.new(job_params)
+    @job = Job.new(job_params)
     if @job.save
-      flash[:success] = "You created #{@job.title} at #{@company.name}"
-      redirect_to company_job_path(@company, @job)
+      flash[:success] = "You created #{@job.title} at #{@job.company.name}"
+      redirect_to job_path(@job)
     else
       render :new
     end
@@ -25,17 +27,15 @@ class JobsController < ApplicationController
   end
 
   def edit
-    @company = Company.find(params[:company_id])
     @job = Job.find(params[:id])
   end
 
   def update
-    @company = Company.find(params[:company_id])
-    @job = Job.find(params[:id])
-    @job.update(job_params)
-    if @job.save
-      flash[:success] = "#{@job.title} updated!"
-      redirect_to company_job_path(@company, @job)
+    job = Job.find(params[:id])
+    job.update(job_params)
+    if job.save
+      flash[:success] = "#{job.title} updated!"
+      redirect_to job_path(job)
     else
       render :edit
     end
@@ -52,6 +52,6 @@ class JobsController < ApplicationController
   private
 
   def job_params
-    params.require(:job).permit(:title, :description, :level_of_interest, :city, :category_id)
+    params.require(:job).permit(:title, :description, :level_of_interest, :city, :category_id, :company_id)
   end
 end

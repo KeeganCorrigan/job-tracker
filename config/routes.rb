@@ -1,10 +1,25 @@
 Rails.application.routes.draw do
 
   resources :companies do
-    resources :jobs
+    resources :jobs, only: [:index, :show] do
+    end
   end
 
-  resources :categories do
-    resources :jobs
-  end
+  resources :dashboard, only: [:index]
+
+  resources :categories
+
+  resources :jobs
+
+  # resources :categories do
+  #   resources :jobs
+  # end
 end
+
+=begin
+resources :artists, shallow: true do
+  resources :songs
+end
+
+resources :songs, only: [:index]
+=end

@@ -7,8 +7,27 @@ describe "User sees a specific job" do
 
     visit company_job_path(company, job)
 
-    expect(page).to have_content("ESPN")
-    expect(page).to have_content("Developer")
-    expect(page).to have_content("70")
+    expect(page).to have_content(company.name)
+    expect(page).to have_content(job.title)
+    expect(page).to have_content(job.level_of_interest)
+  end
+
+  scenario "a user can delete a job from show" do
+    company = Company.create(name: "ESPN")
+    job = company.jobs.create!(title: "Developer", level_of_interest: 70, city: "Denver")
+
+    expected = "#{job.title} was successfully deleted!"
+
+    visit company_job_path(company, job)
+    
+    click_link "Delete"
+
+    expect(current_path).to eq(company_jobs_path(company))
+
+    expect(page).to have_content(expected)
+
+    within("#job-container") do
+      expect(page).to_not have_content(job.title)
+    end
   end
 end

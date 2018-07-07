@@ -24,9 +24,7 @@ describe Company, type: :model do
   end
 
   describe "relationships" do
-    it "has many jobs" do
-      company = Company.new(name: "Dropbox")
-      expect(company).to respond_to(:jobs)
-    end
+    it { should have_many(:jobs) }
+    it { should have_many(:contacts) }
   end
 end

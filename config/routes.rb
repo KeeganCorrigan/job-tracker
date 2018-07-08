@@ -18,9 +18,9 @@ Rails.application.routes.draw do
 
   resources :contacts, only: [:index, :create]
 
-  # resources :categories do
-  #   resources :jobs
-  # end
+  resources :categories do
+    resources :jobs
+  end
 end
 
 =begin

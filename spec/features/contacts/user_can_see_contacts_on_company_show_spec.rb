@@ -8,9 +8,9 @@ describe 'user visits company' do
   it "can create and see a contact" do
     visit company_path(@company)
 
-    fill_in "comment[full_name]", with: "murder jones"
-    fill_in "comment[email]", with: "murderer@murderer.com"
-    fill_in "comment[position]", with: "murderer"
+    fill_in "contact[full_name]", with: "murder jones"
+    fill_in "contact[email]", with: "murderer@murderer.com"
+    fill_in "contact[position]", with: "murderer"
 
     click_button "Create Contact"
 
@@ -43,27 +43,5 @@ describe 'user visits company' do
     expect(page).to have_content("Developer")
     expect(page).to have_content("80")
     expect(page).to have_content("Milan")
-  end
-
-  it "can delete a category" do
-    category = Category.create!(title: "oihsi")
-
-    visit categories_path
-
-    click_link('delete')
-
-    expect(Category.all.empty?).to be(true)
-  end
-
-
-
-  it "can see date and time of comment" do
-    comment = @company.contacts.create!(full_name: "ohasdiuh"
-      email: "ohasdiuh"
-      position: "ohasdiuh")
-
-      visit company_path(@company)
-
-      expect(page).to have_content(comment.created_at)
     end
   end

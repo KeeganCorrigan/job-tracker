@@ -24,6 +24,6 @@ describe 'user visits job' do
 
     visit job_path(@job)
 
-    expect(page).to have_content(comment.created_at)
+    expect(page).to have_content(comment.created_at.strftime('%Y-%m-%d %H:%M:%S'))
   end
 end

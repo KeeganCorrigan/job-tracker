@@ -1,0 +1,26 @@
+<%= form_for [@company, @contact] do |f| %>
+  <%= f.label :name %>
+  <div class="row">
+    <div class="col-sm-8">
+      <%= f.text_field :full_name, class:"form-control"%>
+    </div>
+  </div>
+  <%= f.label :email %>
+  <div class="row">
+    <div class="col-sm-8">
+      <%= f.text_field :email, class:"form-control"%>
+    </div>
+  </div>
+  <%= f.label :position %>
+  <div class="row">
+    <div class="col-sm-8">
+      <%= f.text_field :position, class:"form-control"%>
+    </div>
+  </div>
+</br>
+  <div class="row">
+    <div class="col-sm-2">
+      <%= f.submit %>
+    </div>
+  </div>
+<% end %>

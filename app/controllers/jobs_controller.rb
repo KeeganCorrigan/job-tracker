@@ -2,7 +2,7 @@ class JobsController < ApplicationController
   def index
     if params[:category]
       cat = Category.where(title: params[:category]).first.id
-      @jobs = Job.where(category_id: cat)
+      @jobs = Job.where(category_id: cat).paginate(:page => params[:page], :per_page => 20)
     else
       @jobs = Job.paginate(:page => params[:page], :per_page => 20).includes(:company)
     end
@@ -36,7 +36,7 @@ class JobsController < ApplicationController
     @job.update(job_params)
     if @job.save
       flash[:success] = "#{@job.title} updated!"
-      redirect_to job_path(job)
+      redirect_to job_path(@job)
     else
       flash.now[:alert] = @job.errors.full_messages.join("<br>").html_safe
       render :edit

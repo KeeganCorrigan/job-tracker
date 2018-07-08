@@ -91,11 +91,20 @@ footer {
   color: black;
 }
 
-div.success, div.alert {
+div.success {
+  margin-left: 10%;
+  color: black;
+  
+  margin-bottom: 0%;
+}
+
+div.alert {
   margin-left: 10%;
   color: red;
   margin-bottom: 0%;
 }
+
+
 
 .pagination {
   justify-content: center;

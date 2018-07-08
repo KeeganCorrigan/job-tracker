@@ -2,6 +2,7 @@ class JobsController < ApplicationController
   def index
     if params[:category]
       cat = Category.where(title: params[:category]).first.id
+      flash[:success] = "Now viewing #{params[:category]} jobs"
       @jobs = Job.where(category_id: cat).paginate(:page => params[:page], :per_page => 20)
     else
       @jobs = Job.paginate(:page => params[:page], :per_page => 20).includes(:company)

@@ -1,12 +1,27 @@
-<h3>All Companies</h3>
+<main>
+  <h1>All Companies</h1>
+  <%= link_to 'Create a New Company', new_company_path %>
 
-<ul>
+  <div class="row table-heading">
+    <div class="col-sm-2 text-center">
+    </div>
+    <div class="col-sm-2">
+      <span>company name</span>
+    </div>
+  </div>
   <% @companies.each do |company| %>
-  <li class=company_<%= company.id %>>
-    <%= link_to company.name, company_path(company) %>:
-    <%= link_to "Edit", edit_company_path(company) %>
-    <%= link_to "Delete", company_path(company), method: "delete" %>
-  </li>
+  <div class="row">
+    <div class="col-sm-2 text-center">
+      <%= link_to edit_company_path(company) do %>
+      <i class="far fa-edit" id="edit-<%= company.id%>"><span class="hidden">edit</span></i>
+      <% end %>
+      <%= link_to company_path(company), method: "delete", data: {confirm: "Are you sure?"} do %>
+      <i class="far fa-trash-alt"><span class="hidden">delete</span></i>
+      <% end %>
+    </div>
+    <div class="col-sm-4">
+      <%= link_to company.name, company_path(company) %>
+    </div>
+  </div>
   <% end %>
-</ul>
-<%= link_to 'Create a New Company', new_company_path %>
+</main>

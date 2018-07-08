@@ -25,7 +25,7 @@ describe "User sees a specific job" do
 
     click_link "Delete"
 
-    expect(current_path).to eq(company_jobs_path(company))
+    expect(current_path).to eq(company_path(company))
 
     expect(page).to have_content(expected)
 

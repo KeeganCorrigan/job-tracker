@@ -2,9 +2,10 @@ class JobsController < ApplicationController
   def index
     if params[:category]
       cat = Category.where(title: params[:category]).first.id
-      @jobs = Job.where(category_id: cat)
+      flash[:success] = "Now viewing #{params[:category]} jobs"
+      @jobs = Job.where(category_id: cat).paginate(:page => params[:page], :per_page => 20)
     else
-      @jobs = Job.all.includes(:company)
+      @jobs = Job.paginate(:page => params[:page], :per_page => 20).includes(:company)
     end
   end
 
@@ -18,6 +19,7 @@ class JobsController < ApplicationController
       flash[:success] = "You created #{@job.title} at #{@job.company.name}"
       redirect_to job_path(@job)
     else
+      flash.now[:alert] = @job.errors.full_messages.join("<br>").html_safe
       render :new
     end
   end
@@ -31,12 +33,13 @@ class JobsController < ApplicationController
   end
 
   def update
-    job = Job.find(params[:id])
-    job.update(job_params)
-    if job.save
-      flash[:success] = "#{job.title} updated!"
-      redirect_to job_path(job)
+    @job = Job.find(params[:id])
+    @job.update(job_params)
+    if @job.save
+      flash[:success] = "#{@job.title} updated!"
+      redirect_to job_path(@job)
     else
+      flash.now[:alert] = @job.errors.full_messages.join("<br>").html_safe
       render :edit
     end
   end
@@ -46,7 +49,7 @@ class JobsController < ApplicationController
     job.destroy
 
     flash[:success] = "#{job.title} was successfully deleted!"
-    redirect_to company_jobs_path(job.company)
+    redirect_to jobs_path
   end
 
   private

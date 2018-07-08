@@ -8,7 +8,7 @@ describe "User visits job edit" do
 
     visit job_path(job)
 
-    click_on "Edit"
+    click_on "edit"
 
     expect(current_path).to eq(edit_job_path(job))
 

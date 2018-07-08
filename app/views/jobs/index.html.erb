@@ -1,6 +1,33 @@
+<main>
 <h1>Jobs</h1>
+<div class="secondary-heading">
+  <%= link_to 'Create a New Job', new_job_path %>
+</div>
+
+<div class="row table-heading">
+  <div class="col-sm-2 text-center">
+  </div>
+  <div class="col-sm-5">
+    <span>Position</span>
+  </div>
+</div>
 
 <% @jobs.each do |job| %>
-  <ul><%= link_to job.title, job_path(job) %> at <%= link_to job.company.name, company_path(job.company) %></ul>
+<div class="row">
+  <div class="col-sm-2 text-center">
+    <%= link_to edit_job_path(job) do %>
+      <i class="far fa-edit" id="edit-<%= job.id%>"><span class="hidden">edit</span></i>
+    <% end %>
+    <%= link_to job_path(job), method: "delete", data: {confirm: "Are you sure?"} do %>
+    <i class="far fa-trash-alt"><span class="hidden">delete</span></i>
+    <% end %>
+  </div>
+  <div class="col-sm-5">
+    <%= link_to job.title, job_path(job) %> at <%= link_to job.company.name, company_path(job.company) %></ul>
+  </div>
+</div>
 <% end %>
-<%= link_to 'Create a New Job', new_job_path %>
+  <div class="pagination">
+    <%= will_paginate @jobs, :container => false, :page_links => false %>
+  </div>
+</main>

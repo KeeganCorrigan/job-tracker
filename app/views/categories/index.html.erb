@@ -1,12 +1,37 @@
-<h3>All Categories</h3>
+<main>
+<h1>Categories</h1>
 
-<ul>
-  <% @categories.each do |category| %>
-  <li class='category' <%= category.id %>>
+<div class="secondary-heading">
+  <%= link_to 'Create a New Category', new_category_path %>
+</div>
+
+<div class="row table-heading">
+  <div class="col-sm-2 text-center">
+  </div>
+  <div class="col-sm-2">
+    <span>Category</span>
+  </div>
+  <div class="col-sm-2">
+    <span>Job count</span>
+  </div>
+</div>
+
+<% @categories.each do |category| %>
+<div class="row">
+  <div class="col-sm-2 text-center">
+    <%= link_to edit_category_path(category) do %>
+    <i class="far fa-edit" id="edit-<%= category.id%>"><span class="hidden">edit</span></i>
+    <% end %>
+    <%= link_to category_path(category), method: "delete" do %>
+    <i class="far fa-trash-alt"><span class="hidden">delete</span></i>
+    <% end %>
+  </div>
+  <div class="col-sm-2">
     <%= link_to category.title, "/jobs?category=#{category.title}" %>
-    <%= link_to "Edit", edit_category_path(category) %>
-    <%= link_to "Delete", category_path(category), method: "delete" %>
-  </li>
-  <% end %>
-</ul>
-<%= link_to 'Create a New Category', new_category_path %>
+  </div>
+  <div class="col-sm-6">
+    job count place-holder
+  </div>
+</div>
+<% end %>
+</main>

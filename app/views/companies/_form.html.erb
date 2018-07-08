@@ -2,6 +2,12 @@
 <%= form_for @company do |f| %>
   <%= f.label :name %>
   <%= f.text_field :name %>
-
-  <%= f.submit %>
+  <div class="row">
+    <div class="col-sm-1">
+      <%= link_to "Cancel", companies_path %>
+    </div>
+    <div class="col-sm-2">
+      <%= f.submit %>
+    </div>
+  </div>
 <% end %>

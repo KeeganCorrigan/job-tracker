@@ -1,8 +1,21 @@
 <main>
 <h1>Categories</h1>
+
 <div class="secondary-heading">
   <%= link_to 'Create a New Category', new_category_path %>
 </div>
+
+<div class="row table-heading">
+  <div class="col-sm-2 text-center">
+  </div>
+  <div class="col-sm-2">
+    <span>Category</span>
+  </div>
+  <div class="col-sm-2">
+    <span>Job count</span>
+  </div>
+</div>
+
 <% @categories.each do |category| %>
 <div class="row">
   <div class="col-sm-2 text-center">

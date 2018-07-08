@@ -18,13 +18,4 @@ Rails.application.routes.draw do
 
   resources :categories do
     resources :jobs
-  end
 end
-
-=begin
-resources :artists, shallow: true do
-  resources :songs
-end
-
-resources :songs, only: [:index]
-=end

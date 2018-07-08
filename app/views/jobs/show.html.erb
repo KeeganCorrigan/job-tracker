@@ -23,4 +23,16 @@
 
   <%= render partial:'commentform' %>
 
+  <div class="comment-container">
+  <% @job_comments.each do |comment|  %>
+  <div class="row">
+    <div class="col-sm-3">
+      <%= comment.created_at.strftime('%Y-%m-%d %H:%M:%S') %>
+    </div>
+    <div class="col-sm-5">
+      <%= comment.content %>
+    </div>
+  </div>
+  <% end %>
+</div>
 </main>

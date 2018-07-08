@@ -12,7 +12,7 @@ describe 'user visits job' do
 
     fill_in "comment[content]", with: "murderer"
 
-    click_link "Create Comment"
+    click_button "Create Comment"
 
     expect(current_path).to eq(job_path(@job))
     expect(page).to have_content("murderer")

@@ -1,17 +1,24 @@
-
+<main>
 <h1>Job Categories</h1>
-<%= link_to 'Create a New Category', new_category_path %>
-
-<ul>
-  <% @categories.each do |category| %>
-  <li class='category' <%= category.id %>>
+<div class="secondary-heading">
+  <%= link_to 'Create a New Category', new_category_path %>
+</div>
+<% @categories.each do |category| %>
+<div class="row">
+  <div class="col-sm-1 text-center">
     <%= link_to edit_category_path(category) do %>
-      <i class="far fa-edit" id="edit-<%= category.id%>"><span class="hidden">edit</span></i>
+    <i class="far fa-edit" id="edit-<%= category.id%>"><span class="hidden">edit</span></i>
     <% end %>
     <%= link_to category_path(category), method: "delete" do %>
-      <i class="far fa-trash-alt"></i>
+    <i class="far fa-trash-alt"><span class="hidden">delete</span></i>
     <% end %>
+  </div>
+  <div class="col-sm-2">
     <%= link_to category.title, "/jobs?category=#{category.title}" %>
-  </li>
-  <% end %>
-</ul>
+  </div>
+  <div class="col-sm-6">
+    job count place-holder
+  </div>
+</div>
+<% end %>
+</main>

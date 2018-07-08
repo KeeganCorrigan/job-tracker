@@ -1,6 +1,22 @@
+<main>
 <h1>Jobs</h1>
+<div class="secondary-heading">
+  <%= link_to 'Create a New Job', new_job_path %>
+</div>
 
 <% @jobs.each do |job| %>
-  <ul><%= link_to job.title, job_path(job) %> at <%= link_to job.company.name, company_path(job.company) %></ul>
+<div class="row">
+  <div class="col-sm-1 text-center">
+    <%= link_to edit_job_path(job) do %>
+      <i class="far fa-edit" id="edit-<%= job.id%>"><span class="hidden">edit</span></i>
+    <% end %>
+    <%= link_to job_path(job), method: "delete" do %>
+    <i class="far fa-trash-alt"><span class="hidden">delete</span></i>
+    <% end %>
+  </div>
+  <div class="col-sm-5">
+    <%= link_to job.title, job_path(job) %> at <%= link_to job.company.name, company_path(job.company) %></ul>
+  </div>
+</div>
 <% end %>
-<%= link_to 'Create a New Job', new_job_path %>
+</main>

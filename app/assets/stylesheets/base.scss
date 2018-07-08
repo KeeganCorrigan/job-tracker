@@ -1,6 +1,5 @@
 @import 'shared-values';
 
-
 html {
   height: 100%;
   box-sizing: border-box;
@@ -30,6 +29,24 @@ ul {
   box-sizing: inherit;
 }
 
+.row a {
+  text-decoration-line: none;
+}
+
+.row {
+  margin-top: .5%;
+  margin-bottom: .5%;
+}
+
+main {
+  margin-left: 10%;
+  margin-right: 10%;
+}
+
+.secondary-heading {
+  margin-bottom: 2%;
+}
+
 footer {
   position: absolute;
   right: 0;
@@ -40,17 +57,3 @@ footer {
 .hidden {
   display: none;
 }
-
-
-// $font-stack:    Helvetica, sans-serif;
-// $primary-color: #333;
-//
-// body {
-//   font: 100% $font-stack;
-//   color: $primary-color;
-// }
-
-
-// font-family: 'Yantramanav', sans-serif;
-// font-family: 'Dosis', sans-serif;
-// font-family: 'Fredoka One', cursive;

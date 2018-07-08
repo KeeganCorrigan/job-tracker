@@ -35,8 +35,17 @@ describe 'user visits categories index' do
 
      visit categories_path
 
-     first('.category').click_link('edit')
+     first('.row').click_link('edit')
 
      expect(current_path).to be(edit_category_path(@category_1))
   end
+
+  xit 'should delete category' do
+    visit categories_path
+
+    first('.row').click_link('delete')
+
+    expect(current_path).to be(categories_path)
+    expect(page).to_not have_content(@category_1.title)
+ end
 end

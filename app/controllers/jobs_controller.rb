@@ -4,6 +4,8 @@ class JobsController < ApplicationController
       cat = Category.where(title: params[:category]).first.id
       flash[:success] = "Now viewing #{params[:category]} jobs"
       @jobs = Job.where(category_id: cat).paginate(:page => params[:page], :per_page => 20)
+    elsif params[:sort] = "location"
+      @jobs = Job.sort_by_city.paginate(:page => params[:page], :per_page => 20)
     elsif params[:location]
       flash[:success] = "Now viewing jobs in #{params[:location]}"
       @jobs = Job.where(city: params[:location]).paginate(:page => params[:page], :per_page => 20)

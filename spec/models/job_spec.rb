@@ -27,7 +27,7 @@ describe Job do
     describe ".sort_by_city" do
       it "sorts jobs by location" do
 
-        expect(Job.sort_by_city).to eq([job_1, job_5, job_3, job_4, job_2])
+        expect(Job.sort_by_city).to eq([@job_1, @job_5, @job_3, @job_4, @job_2])
       end
     end
   end

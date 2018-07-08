@@ -7,8 +7,11 @@
 <div class="row table-heading">
   <div class="col-sm-2 text-center">
   </div>
-  <div class="col-sm-5">
+  <div class="col-sm-3">
     <span>Position</span>
+  </div>
+  <div class="col-sm-5">
+    <span>City</span>
   </div>
 </div>
 
@@ -22,8 +25,11 @@
     <i class="far fa-trash-alt"><span class="hidden">delete</span></i>
     <% end %>
   </div>
-  <div class="col-sm-5">
+  <div class="col-sm-3">
     <%= link_to job.title, job_path(job) %> at <%= link_to job.company.name, company_path(job.company) %></ul>
+  </div>
+  <div class="col-sm-5">
+    <%= job.city %>
   </div>
 </div>
 <% end %>

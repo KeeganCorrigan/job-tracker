@@ -91,6 +91,7 @@ footer {
   color: black;
 }
 
-div.success {
+div.success, div.alert {
   margin-left: 10%;
+  color: red;
 }

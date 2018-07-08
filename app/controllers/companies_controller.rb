@@ -13,6 +13,7 @@ class CompaniesController < ApplicationController
       flash[:success] = "#{@company.name} added!"
       redirect_to company_path(@company)
     else
+      flash.now[:alert] = @company.errors.full_messages.join("<br>").html_safe
       render :new
     end
   end
@@ -32,6 +33,7 @@ class CompaniesController < ApplicationController
       flash[:success] = "#{@company.name} updated!"
       redirect_to company_path(@company)
     else
+      flash.now[:alert] = @company.errors.full_messages.join("<br>").html_safe
       render :edit
     end
   end

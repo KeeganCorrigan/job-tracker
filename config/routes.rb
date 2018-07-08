@@ -1,9 +1,6 @@
 Rails.application.routes.draw do
 
-  resources :companies do
-    resources :jobs, only: [:index, :show] do
-    end
-  end
+  resources :companies
 
   resources :dashboard, only: [:index]
 

@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'user visits category show' do
+describe 'user clicks on category' do
   before(:each) do
     @company = Company.create!(name: 'Aetna')
     @category_1 = Category.create!(title: 'Finance')
@@ -13,10 +13,11 @@ describe 'user visits category show' do
     @job_5 = @company.jobs.create!(title: "QAadsfa", description: 'rekjr', level_of_interest: 70, city: "New York City", category: @category_2)
   end
 
-  it 'should see one category' do
+  it 'sees jobs associated with category' do
 
     visit "/jobs?category=#{@category_1.title}"
 
     expect(page).to have_content(@job_1.title)
+    expect(page).to have_content(@job_4.title)
   end
 end

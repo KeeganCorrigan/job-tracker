@@ -12,6 +12,12 @@ Rails.application.routes.draw do
 
   resources :comments, only: [:index, :create]
 
+  resources :companies do
+    resources :contacts
+  end
+
+  resources :contacts, only: [:index, :create]
+
   # resources :categories do
   #   resources :jobs
   # end

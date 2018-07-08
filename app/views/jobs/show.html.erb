@@ -1,5 +1,5 @@
 <main>
-  <h1><%= @job.title %></h2>
+  <h1><%= @job.title %> at <%= link_to @job.company.name, company_path(@job.company) %></h2>
 
   <div class="row">
     <div class="col-sm-2">
@@ -21,8 +21,6 @@
   <h5>City:</h5>
   <p><%= @job.city %></p>
 
-  <h5>Company:</h5>
-  <%= link_to @job.company.name, company_path(@job.company) %>
-
+  <%= render partial:'commentform' %>
 
 </main>

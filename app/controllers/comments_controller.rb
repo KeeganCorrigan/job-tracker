@@ -1,0 +1,28 @@
+class CommentsController < ApplicationController
+
+  def index
+    @comment = Comment.all
+  end
+  def new
+    @comment = Comment.new
+  end
+
+  def create
+    @job = Job.find(params[:job_id])
+    @comment = @job.comments.new(comment_params)
+    if @comment.save
+      flash[:success] = "comment added!"
+      redirect_to job_path(@comment.job)
+    else
+      flash.now[:alert] = @comment.errors.full_messages.join("<br>").html_safe
+      redirect_to job_path(@comment.job)
+    end
+  end
+
+  private
+
+  def comment_params
+    params.require(:comment).permit(:content)
+  end
+
+end

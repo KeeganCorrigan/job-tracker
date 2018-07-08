@@ -1,7 +1,5 @@
 Rails.application.routes.draw do
 
-  resources :companies
-
   resources :dashboard, only: [:index]
 
   resources :categories

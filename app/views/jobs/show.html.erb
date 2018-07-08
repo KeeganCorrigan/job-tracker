@@ -1,17 +1,28 @@
+<main>
+  <h1><%= @job.title %></h2>
 
-Title: <%= @job.title %>
-<br>
+  <div class="row">
+    <div class="col-sm-2">
+      <%= link_to edit_job_path(@job) do %>
+        <i class="far fa-edit" id="edit-<%= @job.id%>"><span class="hidden">edit</span></i>
+      <% end %>
+      <%= link_to job_path(@job), method: "delete" do %>
+      <i class="far fa-trash-alt"><span class="hidden">delete</span></i>
+      <% end %>
+    </div>
+  </div>
 
-Description: <%= @job.description %>
-<br>
+  <h5>Description:</h5>
+  <p><%= @job.description %></p>
 
-Level of Interest: <%= @job.level_of_interest %>
-<br>
+  <h5>Level of Interest:</h5>
+  </p><%= @job.level_of_interest %></p>
 
-City: <%= @job.city %>
-<br>
+  <h5>City:</h5>
+  <p><%= @job.city %></p>
 
-Company: <%= link_to @job.company.name, company_path(@job.company) %>
+  <h5>Company:</h5>
+  <%= link_to @job.company.name, company_path(@job.company) %>
 
-<%= link_to "Delete", job_path(@job), method: :delete %>
-<%= link_to "Edit", edit_job_path(@job) %>
+
+</main>

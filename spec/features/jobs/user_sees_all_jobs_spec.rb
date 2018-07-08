@@ -33,7 +33,7 @@ describe "User visits jobs index" do
 
     visit jobs_path
 
-    first('.row').click_link('delete')
+    click_link('delete')
 
     expect(current_path).to eq(jobs_path)
     expect(page).to_not have_content(company.name)
@@ -46,7 +46,7 @@ describe "User visits jobs index" do
 
     visit jobs_path
 
-    first('.row').click_link('edit')
+    click_link('edit')
 
     expect(current_path).to eq(edit_job_path(job))
   end

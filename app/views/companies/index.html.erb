@@ -3,7 +3,7 @@
   <%= link_to 'Create a New Company', new_company_path %>
 
   <div class="row table-heading">
-    <div class="col-sm-1 text-center">
+    <div class="col-sm-2 text-center">
     </div>
     <div class="col-sm-2">
       <span>company name</span>
@@ -11,7 +11,7 @@
   </div>
   <% @companies.each do |company| %>
   <div class="row">
-    <div class="col-sm-1 text-center">
+    <div class="col-sm-2 text-center">
       <%= link_to edit_company_path(company) do %>
       <i class="far fa-edit" id="edit-<%= company.id%>"><span class="hidden">edit</span></i>
       <% end %>

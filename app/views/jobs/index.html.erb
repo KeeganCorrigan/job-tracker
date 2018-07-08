@@ -4,9 +4,17 @@
   <%= link_to 'Create a New Job', new_job_path %>
 </div>
 
+<div class="row table-heading">
+  <div class="col-sm-2 text-center">
+  </div>
+  <div class="col-sm-5">
+    <span>Position</span>
+  </div>
+</div>
+
 <% @jobs.each do |job| %>
 <div class="row">
-  <div class="col-sm-1 text-center">
+  <div class="col-sm-2 text-center">
     <%= link_to edit_job_path(job) do %>
       <i class="far fa-edit" id="edit-<%= job.id%>"><span class="hidden">edit</span></i>
     <% end %>

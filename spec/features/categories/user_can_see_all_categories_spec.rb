@@ -31,4 +31,12 @@ describe 'user visits categories index' do
     expect(page).to have_content(@job_1.title)
     expect(page).to have_content(@job_4.title)
   end
+  it 'should go to edit category' do
+
+     visit categories_path
+
+     first('.category').click_link('edit')
+
+     expect(current_path).to be(edit_category_path(@category_1))
+  end
 end

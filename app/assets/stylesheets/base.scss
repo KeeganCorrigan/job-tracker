@@ -16,6 +16,14 @@ body {
   min-height: 100%;
 }
 
+h1 {
+  margin-top: 2%;
+}
+
+ul {
+  list-style-type: none;
+}
+
 *,
 *:before,
 *:after {
@@ -27,6 +35,10 @@ footer {
   right: 0;
   bottom: 0;
   left: 0;
+}
+
+.hidden {
+  display: none;
 }
 
 

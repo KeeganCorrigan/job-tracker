@@ -1,13 +1,17 @@
 
-<h3>All Categories</h3>
+<h1>Job Categories</h1>
+<%= link_to 'Create a New Category', new_category_path %>
 
 <ul>
   <% @categories.each do |category| %>
   <li class='category' <%= category.id %>>
+    <%= link_to edit_category_path(category) do %>
+      <i class="far fa-edit" id="edit-<%= category.id%>"><span class="hidden">edit</span></i>
+    <% end %>
+    <%= link_to category_path(category), method: "delete" do %>
+      <i class="far fa-trash-alt"></i>
+    <% end %>
     <%= link_to category.title, "/jobs?category=#{category.title}" %>
-    <%= link_to "Edit", edit_category_path(category) %>
-    <%= link_to "Delete", category_path(category), method: "delete" %>
   </li>
   <% end %>
 </ul>
-<%= link_to 'Create a New Category', new_category_path %>

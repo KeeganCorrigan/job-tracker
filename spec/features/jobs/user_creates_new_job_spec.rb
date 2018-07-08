@@ -23,4 +23,16 @@ describe "User creates a new job" do
     expect(page).to have_content("80")
     expect(page).to have_content("Denver")
   end
+  scenario "a user can create a new job" do
+    company = Company.create!(name: "ESPN")
+    category_1 = Category.create!(title: "iuasd")
+
+    visit new_job_path
+
+    within ".secondary-heading" do
+      click_link "Create a New Category"
+    end
+
+    expect(current_path).to eq(new_category_path)
+  end
 end

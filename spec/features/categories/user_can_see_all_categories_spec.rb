@@ -4,8 +4,6 @@ describe 'user visits categories index' do
   before(:each) do
     @company = Company.create!(name: 'Aetna')
     @category_1 = Category.create!(title: 'Finance')
-    # @category_2 = Category.create!(title: 'Education')
-    # @category_3 = Category.create!(title: 'Music')
     @job_1 = @company.jobs.create!(title: "Developer", description: 'rekjr', level_of_interest: 70, city: "Denver", category: @category_1)
     @job_2 = @company.jobs.create!(title: "QA Analyst", description: 'rekjr', level_of_interest: 70, city: "New York City", category: @category_1)
     @job_3 = @company.jobs.create!(title: "Murderer", description: 'rekjr', level_of_interest: 70, city: "New York City", category: @category_1)
@@ -14,7 +12,7 @@ describe 'user visits categories index' do
   end
 
   it 'should see all categories' do
-    
+
     visit categories_path
 
     expect(page).to have_content(@category_1.title)
@@ -35,15 +33,18 @@ describe 'user visits categories index' do
 
      click_link('edit')
 
-     expect(current_path).to be(edit_category_path(@category_1))
+     expect(current_path).to eq(edit_category_path(@category_1))
   end
 
-  xit 'should delete category' do
+  it 'should go to create new category' do
+    category_1 = Category.create!(title: "iuasd")
+
     visit categories_path
 
-    click_link('delete')
+    within ".secondary-heading" do
+      click_link "Create a New Category"
+    end
 
-    expect(current_path).to be(categories_path)
-    expect(page).to_not have_content(@category_1.title)
- end
+    expect(current_path).to eq(new_category_path)
+  end
 end

@@ -49,6 +49,20 @@ main {
   margin-right: 10%;
 }
 
+.card {
+  margin: 5%;
+  text-align: center;
+  font-size: .7em;
+  color: rgb(207, 207, 207);
+  background: black;
+}
+
+.comment-container {
+  margin-top: 2%;
+  padding-top: 2%;
+  border-top: 1px solid $secondary-color;
+}
+
 .secondary-heading {
   margin-bottom: 2%;
 }
@@ -94,7 +108,7 @@ footer {
 div.success {
   margin-left: 10%;
   color: black;
-  
+
   margin-bottom: 0%;
 }
 

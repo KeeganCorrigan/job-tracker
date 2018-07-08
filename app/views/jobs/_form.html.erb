@@ -30,6 +30,9 @@
       <%= f.collection_select :category_id, Category.order(:title), :id, :title %>
     </div>
   </div>
+  <div class="secondary-heading">
+    <%= link_to 'Create a New Category', new_category_path %>
+  </div>
   <div class="row">
     <div class="col-sm-2">
       <%= f.label :company %>

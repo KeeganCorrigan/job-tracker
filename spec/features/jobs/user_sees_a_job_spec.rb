@@ -14,23 +14,18 @@ describe "User sees a specific job" do
   end
 
   it "a user can delete a job from show" do
-    skip
     category = Category.create!(title: "iuhasd")
     company = Company.create(name: "ESPN")
     job = company.jobs.create!(title: "Developer", level_of_interest: 70, description: 'adfj', city: "Denver", category: category)
 
     expected = "#{job.title} was successfully deleted!"
 
-    visit company_job_path(company, job)
+    visit job_path(job)
 
-    click_link "Delete"
+    click_link "delete"
 
-    expect(current_path).to eq(company_path(company))
-
+    expect(current_path).to eq(jobs_path)
     expect(page).to have_content(expected)
-
-    within("#job-container") do
-      expect(page).to_not have_content(job.title)
-    end
+    expect(Job.where(description: 'adfg').count).to eq(0)
   end
 end

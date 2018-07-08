@@ -17,6 +17,18 @@
             <h5><%= contact.full_name %></h5>
             <p><%= contact.position %></p>
             <p><%= contact.email %></p>
+
+            <div class="row">
+              <div class="col-sm-12">
+                <%= link_to edit_contact_path(contact) do %>
+                  <i class="far fa-edit" id="edit-<%= @contact.id%>"><span class="hidden">edit</span></i>
+                <% end %>
+                <%= link_to company_contact_path(contact), method: "delete" do %>
+                <i class="far fa-trash-alt"><span class="hidden">delete</span></i>
+                <% end %>
+              </div>
+            </div>
+
           </div>
         </div>
         <% end %>

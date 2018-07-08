@@ -3,6 +3,9 @@ require 'rails_helper'
 describe 'user visits company' do
   before(:each) do
     @company = Company.create!(name: 'Aetna')
+    @contact = @company.contacts.create!(full_name: "oihsi",
+                              email: 'adf',
+                              position: 'lkjer')
   end
 
   it "can create and see a contact" do
@@ -18,30 +21,36 @@ describe 'user visits company' do
     expect(page).to have_content("murder jones")
     expect(page).to have_content("murderer@murderer.com")
     expect(page).to have_content("murderer")
-    expect(Contact.count).to eq(1)
+    expect(Contact.count).to eq(2)
+  end
+
+  describe "user deletes existing contact" do
+    it "can delete a contact" do
+
+      visit company_path(@company)
+
+      click_link('delete')
+
+      expect(Contact.all.empty?).to be(true)
+    end
   end
 
   it 'can update a contact' do
-    skip
     visit company_path(@company)
 
     click_on "edit"
 
-    expect(current_path).to eq()
+    expect(current_path).to eq(edit_contact_path(@contact))
 
-    fill_in "[title]", with: "Developer"
-    fill_in "[description]", with: "So fun!"
-    fill_in "[level_of_interest]", with: 80
-    fill_in "[city]", with: "Milan"
-
-    find('#job_category_id').find(:xpath,'option[1]').select_option
+    fill_in "contact[full_name]", with: "Developer"
+    fill_in "contact[email]", with: "So fun!"
+    fill_in "contact[position]", with: 'newpos'
 
     click_on "Update"
 
-    expect(current_path).to eq(job_path(job))
-    expect(page).to have_content("ESPN")
+    expect(current_path).to eq(company_path(@company))
     expect(page).to have_content("Developer")
-    expect(page).to have_content("80")
-    expect(page).to have_content("Milan")
+    expect(page).to have_content("So fun!")
+    expect(page).to have_content("newpos")
     end
   end

@@ -16,7 +16,7 @@ Rails.application.routes.draw do
     resources :contacts
   end
 
-  resources :contacts, only: [:index, :create]
+  resources :contacts, only: [:index, :create, :edit, :update]
 
   resources :categories do
     resources :jobs

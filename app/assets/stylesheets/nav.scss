@@ -1,0 +1,13 @@
+@import 'shared-values';
+
+.navbar {
+  .navbar-right-override {
+    justify-content: flex-end !important;
+  }
+}
+
+.navbar-brand {
+  font-family: $important-font;
+  font-weight: 400;
+  font-size: 1.5em;
+}

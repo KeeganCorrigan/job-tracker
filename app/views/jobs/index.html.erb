@@ -27,4 +27,7 @@
   </div>
 </div>
 <% end %>
+  <div class="pagination">
+    <%= will_paginate @jobs, :container => false, :page_links => false %>
+  </div>
 </main>

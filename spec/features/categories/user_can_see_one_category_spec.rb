@@ -15,19 +15,8 @@ describe 'user visits category show' do
 
   it 'should see one category' do
 
-    visit category_path(@category_1)
+    visit "/jobs?category=#{@category_1.title}"
 
-    expect(page).to have_content(@category_1.title)
-  end
-
-  it 'should link to category show' do
-
-    visit category_path(@category_1)
-
-    click_link @job_1.title
-
-    expect(current_path).to eq(category_job_path(@category_1, @job_1))
     expect(page).to have_content(@job_1.title)
-    expect(page).to have_content(@job_1.description)
   end
 end

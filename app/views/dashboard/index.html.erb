@@ -1,7 +1,7 @@
 <main>
-  <h1>Job Tracker</h1>
+<h1>Job Tracker</h1>
 
-  <div id="chart" style="width: auto; height: 600px;"></div>
+<div id="chart" style="width: auto; height: 600px;"></div>
 
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <%= javascript_tag do -%>
@@ -13,6 +13,8 @@
     data = [['Interest Level', 'Number of Jobs']].concat(data);
     data = google.visualization.arrayToDataTable(data);
     var options = {
+      focusTarget: 'category',
+    backgroundColor: 'transparent',
       chart: {
         title: 'Interest by Job',
       }

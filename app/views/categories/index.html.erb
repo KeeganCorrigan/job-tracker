@@ -30,7 +30,7 @@
     <%= link_to category.title, "/jobs?category=#{category.title}" %>
   </div>
   <div class="col-sm-6">
-    job count place-holder
+    <%= category.jobs.length %>
   </div>
 </div>
 <% end %>

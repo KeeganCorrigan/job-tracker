@@ -15,7 +15,7 @@
   <%= f.label :level_of_interest %>
   <div class="row">
     <div class="col-sm-1">
-      <%= f.number_field :level_of_interest, class: "form-control"%>
+      <%= f.select :level_of_interest, (1..5), class: "form-control"%>
     </div>
   </div>
   <%= f.label :city %>

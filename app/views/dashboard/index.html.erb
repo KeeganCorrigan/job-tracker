@@ -1,21 +1,25 @@
 <main>
   <h1>Job Tracker</h1>
-  <div class="row">
-    <h3>Interest</h3>
-    <div class="col-sm-6">
-      <% @job_level_of_interest.each do |interest, count| %>
-      <div class="row">
-        <div class="col-sm-3">
-          <p><%= interest %></p>
-        </div>
-        <div class="col-sm-3">
-          <p><%= count %></p>
-        </div>
-      </div>
-      <% end %>
-    </div>
-    <div class="col-sm-6">
 
-    </div>
-  </div>
+  <div id="chart" style="width: auto; height: 600px;"></div>
+
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<%= javascript_tag do -%>
+  google.charts.load('current', {'packages':['bar']});
+  google.charts.setOnLoadCallback(drawChart);
+
+  function drawChart() {
+    var data = JSON.parse('<%= @job_level_of_interest.to_json.html_safe -%>');
+    data = [['Interest Level', 'Number of Jobs']].concat(data);
+    data = google.visualization.arrayToDataTable(data);
+    var options = {
+      chart: {
+        title: 'Interest by Job',
+      }
+    };
+
+    var chart = new google.charts.Bar(document.getElementById('chart'));
+    chart.draw(data, google.charts.Bar.convertOptions(options));
+  }
+<% end -%>
 </main>

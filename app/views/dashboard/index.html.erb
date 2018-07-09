@@ -1,0 +1,21 @@
+<main>
+  <h1>Job Tracker</h1>
+  <div class="row">
+    <h3>Interest</h3>
+    <div class="col-sm-6">
+      <% @job_level_of_interest.each do |interest, count| %>
+      <div class="row">
+        <div class="col-sm-3">
+          <p><%= interest %></p>
+        </div>
+        <div class="col-sm-3">
+          <p><%= count %></p>
+        </div>
+      </div>
+      <% end %>
+    </div>
+    <div class="col-sm-6">
+
+    </div>
+  </div>
+</main>

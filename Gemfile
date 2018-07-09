@@ -7,6 +7,8 @@ end
 
 gem 'will_paginate'
 
+gem 'chartkick'
+
 gem 'jquery-rails'
 
 gem 'bootstrap', '~> 4.1.1'

@@ -38,5 +38,13 @@ describe Job do
         expect(Job.group_by_level_of_interest).to eq(expected)
       end
     end
+    describe ".group_by_city" do
+      it "returns job count by city" do
+
+        expected = { "a"=> 1, "b"=> 1, "c"=> 1, "d"=> 1, "e"=> 1 }
+
+        expect(Job.group_by_city).to eq(expected)
+      end
+    end
   end
 end

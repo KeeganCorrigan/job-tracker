@@ -1,27 +1,8 @@
 <main>
-<h1>Job Tracker</h1>
+<h1>Dashboard</h1>
 
-<div id="chart" style="width: auto; height: 600px;"></div>
-
-<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-<%= javascript_tag do -%>
-  google.charts.load('current', {'packages':['bar']});
-  google.charts.setOnLoadCallback(drawChart);
-
-  function drawChart() {
-    var data = JSON.parse('<%= @job_level_of_interest.to_json.html_safe -%>');
-    data = [['Interest Level', 'Number of Jobs']].concat(data);
-    data = google.visualization.arrayToDataTable(data);
-    var options = {
-      focusTarget: 'category',
-    backgroundColor: 'transparent',
-      chart: {
-        title: 'Interest by Job',
-      }
-    };
-
-    var chart = new google.charts.Bar(document.getElementById('chart'));
-    chart.draw(data, google.charts.Bar.convertOptions(options));
-  }
-<% end -%>
+<h2>Level of interest</h2>
+<%= pie_chart @job_level_of_interest, donut: true, legend: "left" %>
+<h2>Jobs by city</h2>
+<%= line_chart @job_grouped_by_city %>
 </main>

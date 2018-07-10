@@ -1,0 +1,5 @@
+# tried adding a div around edit button
+# tried as a class, as an id
+find(:css, "i.far.fa-edit.edit-#{@category_1.id}").click
+find(:css, "#edit-#{@category_1.id}").click
+first(:css, "i.far.fa-edit").click

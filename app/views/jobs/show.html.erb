@@ -1,15 +1,38 @@
-Title: <%= @job.title %>
-<br>
+<main>
+  <h1><%= @job.title %> at <%= link_to @job.company.name, company_path(@job.company) %></h2>
 
-Description: <%= @job.description %>
-<br>
+  <div class="row">
+    <div class="col-sm-2">
+      <%= link_to edit_job_path(@job) do %>
+        <i class="far fa-edit" id="edit-<%= @job.id%>"><span class="hidden">edit</span></i>
+      <% end %>
+      <%= link_to job_path(@job), method: "delete" do %>
+      <i class="far fa-trash-alt"><span class="hidden">delete</span></i>
+      <% end %>
+    </div>
+  </div>
 
-Level of Interest: <%= @job.level_of_interest %>
-<br>
+  <h5>Description:</h5>
+  <p><%= @job.description %></p>
 
-City: <%= @job.city %>
-<br>
+  <h5>Level of Interest:</h5>
+  <p><%= @job.level_of_interest %></p>
 
-Company: <%= link_to @job.company.name, company_path(@job.company) %>
+  <h5>City:</h5>
+  <p><%= @job.city %></p>
 
-<%= link_to "Delete", company_job_path(@job.company, @job), method: :delete %>
+  <%= render partial:'commentform' %>
+
+  <div class="comment-container">
+  <% @job_comments.each do |comment|  %>
+  <div class="row">
+    <div class="col-sm-3">
+      <%= comment.created_at.strftime('%Y-%m-%d %H:%M:%S') %>
+    </div>
+    <div class="col-sm-5">
+      <%= comment.content %>
+    </div>
+  </div>
+  <% end %>
+</div>
+</main>

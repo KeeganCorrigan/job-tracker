@@ -1,0 +1,17 @@
+<%= form_for @category do |f| %>
+  <%= f.label :title %>
+  <div class="row">
+    <div class="col-sm-4">
+      <%= f.text_field :title, class:"form-control"%>
+    </div>
+  </div>
+</br>
+  <div class="row">
+    <div class="col-sm-1">
+      <%= link_to "Cancel", companies_path %>
+    </div>
+    <div class="col-sm-2">
+      <%= f.submit %>
+    </div>
+  </div>
+<% end %>

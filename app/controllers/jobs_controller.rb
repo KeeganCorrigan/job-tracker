@@ -1,35 +1,54 @@
 class JobsController < ApplicationController
   def index
-    @company = Company.find(params[:company_id])
-    @jobs = @company.jobs
+    if params[:category]
+      cat = Category.where(title: params[:category]).first.id
+      flash[:success] = "Now viewing #{params[:category]} jobs"
+      @jobs = Job.where(category_id: cat).paginate(:page => params[:page], :per_page => 20)
+    elsif params[:location]
+      flash[:success] = "Now viewing jobs in #{params[:location]}"
+      @jobs = Job.where(city: params[:location]).paginate(:page => params[:page], :per_page => 20)
+    elsif params[:sort] = "location"
+      @jobs = Job.sort_by_city.paginate(:page => params[:page], :per_page => 20)
+    else
+      @jobs = Job.paginate(:page => params[:page], :per_page => 20).includes(:company)
+    end
   end
 
   def new
-    @company = Company.find(params[:company_id])
-    @job = Job.new()
+    @job = Job.new
   end
 
   def create
-    @company = Company.find(params[:company_id])
-    @job = @company.jobs.new(job_params)
+    @job = Job.new(job_params)
     if @job.save
-      flash[:success] = "You created #{@job.title} at #{@company.name}"
-      redirect_to company_job_path(@company, @job)
+      flash[:success] = "You created #{@job.title} at #{@job.company.name}"
+      redirect_to job_path(@job)
     else
+      flash.now[:alert] = @job.errors.full_messages.join("<br>").html_safe
       render :new
     end
   end
 
   def show
     @job = Job.find(params[:id])
+    @comment = Comment.new
+    @job_comments = @job.comments.order(created_at: :desc)
   end
 
   def edit
-    # implement on your own!
+    @job = Job.find(params[:id])
   end
 
   def update
-    # implement on your own!
+    @job = Job.find(params[:id])
+    @job.update(job_params)
+    if @job.save
+      flash[:success] = "#{@job.title} updated!"
+      redirect_to job_path(@job)
+    else
+      flash.now[:alert] = @job.errors.full_messages.join("<br>").html_safe
+      render :edit
+    end
   end
 
   def destroy
@@ -37,12 +56,12 @@ class JobsController < ApplicationController
     job.destroy
 
     flash[:success] = "#{job.title} was successfully deleted!"
-    redirect_to company_jobs_path(job.company)
+    redirect_to jobs_path
   end
 
   private
 
   def job_params
-    params.require(:job).permit(:title, :description, :level_of_interest, :city, :category_id)
+    params.require(:job).permit(:title, :description, :level_of_interest, :city, :category_id, :company_id)
   end
 end

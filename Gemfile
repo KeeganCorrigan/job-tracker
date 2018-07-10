@@ -5,7 +5,13 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
+gem 'will_paginate'
 
+gem 'chartkick'
+
+gem 'jquery-rails'
+
+gem 'bootstrap', '~> 4.1.1'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.1.2'
 # Use postgresql as the database for Active Record
@@ -41,6 +47,10 @@ group :development, :test do
   gem 'database_cleaner'
   gem 'launchy'
   gem 'shoulda-matchers'
+  gem 'pry'
+  gem 'active-designer'
+  gem 'orderly'
+  gem 'simplecov'
 end
 
 group :development do

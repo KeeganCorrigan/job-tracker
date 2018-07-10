@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   resources :categories
 
   resources :jobs do
-    resources :comments, exclude: [:show, :edit, :update]
+    resources :comments, exclude: [:show, :edit, :update, :index]
   end
 
   resources :companies do

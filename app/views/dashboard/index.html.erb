@@ -1,13 +1,20 @@
 <main>
 <h1 class="company-head">Dashboard</h1>
 
-<h2>Level of interest</h2>
-<%= pie_chart @job_level_of_interest, donut: true, legend: "left", label: "jobs" %>
+<div class="row dashboard-row">
+  <div class="col-6">
+    <h3 class="company-head">Level of interest</h3>
+    <%= pie_chart @job_level_of_interest, donut: true, legend: "left", label: "jobs" %>
+  </div>
+  <div class="col-6">
+    <h3 class="company-head">Jobs by Interest:<h3>
+  </div>
+</div>
 <h2>Jobs by city</h2>
 <%= line_chart @job_grouped_by_city, label: "Jobs", curve: false %>
 <div class="row dashboard-row">
   <div class="col-6">
-    <h3 class="company-head">Link to job by location:<h3>
+    <h3 class="company-head">Jobs by location:<h3>
       <div class="row">
       <% @job_grouped_by_city.each do |city|  %>
       <div class="col-sm-6">

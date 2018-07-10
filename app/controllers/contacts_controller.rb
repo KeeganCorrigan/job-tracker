@@ -1,4 +1,6 @@
 class ContactsController < ApplicationController
+  before_action :set_contact, only: [:destroy, :update, :edit]
+  before_action :set_company, only: [:destroy, :update, :edit]
 
   def index
     @contact = Contact.all
@@ -21,15 +23,12 @@ class ContactsController < ApplicationController
   end
 
   def edit
-    @contact = Contact.find(params[:id])
   end
 
   def update
-    @contact = Contact.find(params[:id])
-    @company = @contact.company
     @contact.update(contact_params)
     if @contact.save
-      flash[:success] = "#{@contact.full_name} updated!"
+      flash[:success] = "contact updated!"
       redirect_to company_path(@company)
     else
       flash.now[:alert] = @contact.errors.full_messages.join("<br>").html_safe
@@ -38,18 +37,23 @@ class ContactsController < ApplicationController
   end
 
   def destroy
-    company = Company.find(params[:id])
-    contact = Contact.find(params[:company_id])
-    contact.destroy
+    @contact.destroy
 
-    flash[:success] = "#{contact.full_name} was successfully deleted!"
-    redirect_to company_path(company)
+    flash[:success] = "contact deleted!"
+    redirect_to company_path(@company)
   end
 
   private
 
-  def contact_params
-    params.require(:contact).permit(:full_name, :email, :position)
+  def set_contact
+    @contact = Contact.find(params[:id])
   end
 
+  def set_company
+    @company = @contact.company
+  end
+
+  def contact_params
+    params.require(:contact).permit(:full_name, :email, :position, :id)
+  end
 end

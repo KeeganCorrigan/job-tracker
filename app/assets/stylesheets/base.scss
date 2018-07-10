@@ -82,7 +82,7 @@ footer {
 }
 
 .table-heading {
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid $secondary-color;
   margin-top: 2%;
 }
 
@@ -124,78 +124,3 @@ div.alert {
   color: red;
   margin-bottom: 0%;
 }
-
-.card-img-top {
-  border-radius: 50%;
-  margin-top: 5%;
-  margin-bottom: 0%;
-}
-
-.card-text {
-  margin: .2%;
-  padding-bottom: 3px;
-}
-
-.card-body-reset {
-  padding: .75em;
-}
-.contact-card-heading {
-  margin-top: 0;
-}
-
-
-
-#edit-contact {
-  color: white;
-  }
-
-#edit-contact:hover {
-  color: #DCDCDC;
-  }
-
-.pagination {
-    justify-content: center;
-    background: white;
-    cursor: default;
-  }
-
-.pagination a, .pagination span, .pagination em {
-    padding: 0.2em 0.5em;
-    display: block;
-    float: left;
-    margin-right: 1px;
-  }
-
-.pagination .disabled {
-    color: #999999;
-    border: 1px solid #dddddd;
-  }
-.pagination .current {
-    font-style: normal;
-    font-weight: bold;
-    background: #2e6ab1;
-    color: white;
-    border: 1px solid #2e6ab1;
-  }
-.pagination a {
-    text-decoration: none;
-    color: #105cb6;
-    border: 1px solid #9aafe5;
-  }
-.pagination a:hover, .pagination a:focus {
-    color: #000033;
-    border-color: #000033;
-  }
-.pagination:after {
-    content: ".";
-    display: block;
-    height: 0;
-    clear: both;
-    visibility: hidden;
-   }
-* html .pagination {
-  height: 1%;
-  }
-*:first-child + html .pagination {
-  overflow: hidden;
-  }

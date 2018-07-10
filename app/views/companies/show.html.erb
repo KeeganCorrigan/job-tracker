@@ -6,7 +6,7 @@
       <ul><%= link_to job.title, job_path(job) %></ul>
       <% end %>
     </div>
-    
+
     <div class="col-md-7">
       <h1 class="company-head">Contacts</h1>
       <%= render partial:"contactform" %>
@@ -21,10 +21,10 @@
 
             <div class="row">
               <div class="col-sm-12">
-                <%= link_to edit_contact_path(contact) do %>
+                <%= link_to edit_company_contact_path(contact.company, contact) do %>
                   <i class="far fa-edit" id="edit-contact"><span class="hidden">edit</span></i>
                 <% end %>
-                <%= link_to company_contact_path(contact), method: "delete" do %>
+                <%= link_to company_contact_path(@company, contact), method: "delete" do %>
                 <i class="far fa-trash-alt"><span class="hidden">delete</span></i>
                 <% end %>
               </div>

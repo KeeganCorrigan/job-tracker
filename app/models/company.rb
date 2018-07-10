@@ -4,7 +4,7 @@ class Company < ApplicationRecord
   has_many :contacts, dependent: :destroy
 
   def self.sort_companies_by_interest
-    # Company.joins(:jobs).select( company.id = job.id).avg(:level_of_interest AS avg_level_of_interest).order(avg_level_of_interest ASC).
+    Company.joins(:jobs).group(:id).order('avg(level_of_interest) desc').take(3)
   end
 
 end

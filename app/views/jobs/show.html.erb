@@ -6,7 +6,7 @@
       <%= link_to edit_job_path(@job) do %>
         <i class="far fa-edit" id="edit-<%= @job.id%>"><span class="hidden">edit</span></i>
       <% end %>
-      <%= link_to job_path(@job), method: "delete" do %>
+      <%= link_to job_path(@job), method: "delete", data: {confirm: "Are you sure?"} do %>
       <i class="far fa-trash-alt"><span class="hidden">delete</span></i>
       <% end %>
     </div>

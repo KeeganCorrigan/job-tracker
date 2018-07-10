@@ -3,7 +3,7 @@ class Job < ApplicationRecord
 
   belongs_to :company
   belongs_to :category
-  
+
   has_many :comments, dependent: :destroy
 
   def self.sort_by_city
@@ -12,6 +12,10 @@ class Job < ApplicationRecord
 
   def self.group_by_city
     group(:city).count
+  end
+
+  def self.sort_by_interest
+    order("level_of_interest desc")
   end
 
   def self.group_by_level_of_interest

@@ -46,5 +46,12 @@ describe Job do
         expect(Job.group_by_city).to eq(expected)
       end
     end
+
+    describe ".sort_by_interest" do
+      it "sorts jobs by interest" do
+        expect(Job.sort_by_interest.first.level_of_interest).to eq(3)
+        expect(Job.sort_by_interest.last.level_of_interest).to eq(1)
+      end
+    end
   end
 end

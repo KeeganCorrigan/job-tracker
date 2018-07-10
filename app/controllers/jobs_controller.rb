@@ -9,6 +9,10 @@ class JobsController < ApplicationController
     elsif params[:location]
       flash[:success] = "Now viewing jobs in #{params[:location]}"
       @jobs = Job.where(city: params[:location]).paginate(:page => params[:page], :per_page => 20)
+    elsif params[:interest]
+      @jobs = Job.where(level_of_interest: params[:interest]).paginate(:page => params[:page], :per_page => 20)
+    elsif params[:sort] = "interest"
+      @jobs = Job.sort_by_interest.paginate(:page => params[:page], :per_page => 20)
     elsif params[:sort] = "location"
       @jobs = Job.sort_by_city.paginate(:page => params[:page], :per_page => 20)
     else

@@ -1,0 +1,16 @@
+<main>
+<h1>Edit Comment</h1> 
+<%= form_for [@job, @comment] do |f| %>
+  <%= f.label :comment %>
+  <div class="row">
+    <div class="col-sm-4">
+      <%= f.text_area :content, class:"form-control"%>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-2">
+      <%= f.submit %>
+    </div>
+  </div>
+<% end %>
+</main>

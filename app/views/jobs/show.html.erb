@@ -26,6 +26,14 @@
   <div class="comment-container">
   <% @job_comments.each do |comment|  %>
   <div class="row">
+    <div class="col-sm-2 text-center" id="comment-<%= comment.id%>">
+      <%= link_to edit_job_comment_path(@job, comment) do %>
+        <i class="far fa-edit"><span class="hidden">edit</span></i>
+      <% end %>
+      <%= link_to job_comment_path(@job, comment), method: "delete", data: {confirm: "Are you sure?"} do %>
+      <i class="far fa-trash-alt"><span class="hidden">delete</span></i>
+      <% end %>
+    </div>
     <div class="col-sm-3">
       <%= comment.created_at.strftime('%Y-%m-%d %H:%M:%S') %>
     </div>

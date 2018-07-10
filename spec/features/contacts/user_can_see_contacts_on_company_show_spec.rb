@@ -3,9 +3,7 @@ require 'rails_helper'
 describe 'user visits company' do
   before(:each) do
     @company = Company.create!(name: 'Aetna')
-    @contact = @company.contacts.create!(full_name: "oihsi",
-                              email: 'adf',
-                              position: 'lkjer')
+    @contact = @company.contacts.create!(full_name: "oihsi", email: 'adf', position: 'lkjer')
   end
 
   it "can create and see a contact" do
@@ -18,6 +16,7 @@ describe 'user visits company' do
     click_button "Create Contact"
 
     expect(current_path).to eq(company_path(@company))
+    expect(page).to have_content("contact added!")
     expect(page).to have_content("murder jones")
     expect(page).to have_content("murderer@murderer.com")
     expect(page).to have_content("murderer")
@@ -32,6 +31,7 @@ describe 'user visits company' do
       click_link('delete')
 
       expect(Contact.all.empty?).to be(true)
+      expect(page).to have_content("contact deleted!")
     end
   end
 
@@ -49,6 +49,7 @@ describe 'user visits company' do
     click_on "Update"
 
     expect(current_path).to eq(company_path(@company))
+    expect(page).to have_content("contact updated!")
     expect(page).to have_content("Developer")
     expect(page).to have_content("So fun!")
     expect(page).to have_content("newpos")

@@ -18,7 +18,7 @@ describe "User creates a new company" do
 
     click_button "Create"
 
-    expect(current_path).to eq(new_company_path)
-    expect(page).to have_content("company name can't be blank")
+    expect(current_path).to eq(companies_path)
+    expect(page).to have_content("Name can't be blank")
   end
 end

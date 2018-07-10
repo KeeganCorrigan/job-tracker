@@ -11,12 +11,6 @@ Rails.application.routes.draw do
   resources :comments, only: [:index, :create]
 
   resources :companies do
-    resources :contacts
-  end
-
-  resources :contacts, only: [:index, :create, :edit, :update]
-
-  resources :categories do
-    resources :jobs
+    resources :contacts, exclude: [:show]
   end
 end

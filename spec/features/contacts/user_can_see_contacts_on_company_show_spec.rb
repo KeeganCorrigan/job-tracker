@@ -40,7 +40,7 @@ describe 'user visits company' do
 
     click_on "edit"
 
-    expect(current_path).to eq(edit_contact_path(@contact))
+    expect(current_path).to eq(edit_company_contact_path(@company, @contact))
 
     fill_in "contact[full_name]", with: "Developer"
     fill_in "contact[email]", with: "So fun!"

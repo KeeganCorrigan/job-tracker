@@ -14,7 +14,7 @@ describe "User visits job edit" do
 
     fill_in "job[title]", with: "Developer"
     fill_in "job[description]", with: "So fun!"
-    fill_in "job[level_of_interest]", with: 80
+    find('#job_level_of_interest').find(:xpath, 'option[2]').select_option
     fill_in "job[city]", with: "Milan"
 
     find('#job_category_id').find(:xpath,'option[1]').select_option
@@ -24,7 +24,7 @@ describe "User visits job edit" do
     expect(current_path).to eq(job_path(job))
     expect(page).to have_content("ESPN")
     expect(page).to have_content("Developer")
-    expect(page).to have_content("80")
+    expect(page).to have_content("2")
     expect(page).to have_content("Milan")
   end
 end

@@ -9,8 +9,8 @@ describe "User creates a new job" do
 
     fill_in "job[title]", with: "Developer"
     fill_in "job[description]", with: "So fun!"
-    fill_in "job[level_of_interest]", with: 80
     fill_in "job[city]", with: "Denver"
+    find('#job_level_of_interest').find(:xpath, 'option[2]').select_option
 
     find('#job_category_id').find(:xpath, 'option[1]').select_option
     find('#job_company_id').find(:xpath, 'option[1]').select_option
@@ -20,7 +20,7 @@ describe "User creates a new job" do
     expect(current_path).to eq("/jobs/#{Job.last.id}")
     expect(page).to have_content("ESPN")
     expect(page).to have_content("Developer")
-    expect(page).to have_content("80")
+    expect(page).to have_content("2")
     expect(page).to have_content("Denver")
   end
   scenario "a user can create a new job" do

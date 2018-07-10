@@ -10,6 +10,12 @@
   <div class="col-sm-5">
     <span>Position</span>
   </div>
+  <div class="col-sm-2">
+    <span>City</span>
+  </div>
+  <div class="col-sm-2">
+    <span>Interest</span>
+  </div>
 </div>
 
 <% @jobs.each do |job| %>
@@ -24,6 +30,12 @@
   </div>
   <div class="col-sm-5">
     <%= link_to job.title, job_path(job) %> at <%= link_to job.company.name, company_path(job.company) %></ul>
+  </div>
+  <div class="col-sm-2">
+    <%= job.city %>
+  </div>
+  <div class="col-sm-2">
+    <%= job.level_of_interest %>
   </div>
 </div>
 <% end %>

@@ -18,6 +18,12 @@ describe 'user visits categories index' do
     expect(page).to have_content(@category_1.title)
   end
 
+  it 'should see count of jobs by category' do
+
+    visit categories_path
+
+    expect(page).to have_content(@category_1.jobs.count)
+  end
   it 'should link to category show' do
 
     visit categories_path

@@ -1,7 +1,7 @@
 class ContactsController < ApplicationController
   before_action :set_contact, only: [:destroy, :update, :edit]
   before_action :set_company, only: [:destroy, :update, :edit]
-  
+
   def create
     @company = Company.find(params[:company_id])
     @contact = @company.contacts.new(contact_params)
@@ -24,7 +24,7 @@ class ContactsController < ApplicationController
       redirect_to company_path(@company)
     else
       flash.now[:alert] = @contact.errors.full_messages.join("<br>").html_safe
-      redirect_to company_path(@company)
+      render :edit
     end
   end
 

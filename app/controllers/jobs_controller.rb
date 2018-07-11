@@ -3,9 +3,9 @@ class JobsController < ApplicationController
 
   def index
     if params[:category]
-      new_category = Category.where(title: params[:category]).first.id
+      new_category = Category.includes(:jobs).find_by(title: params[:category])
       flash[:success] = "Now viewing #{params[:category]} jobs"
-      @jobs = Job.where(category_id: new_category).paginate(:page => params[:page], :per_page => 20)
+      @jobs = new_category.jobs.where(category_id: new_category).paginate(:page => params[:page], :per_page => 20)
     elsif params[:location]
       flash[:success] = "Now viewing jobs in #{params[:location]}"
       @jobs = Job.where(city: params[:location]).paginate(:page => params[:page], :per_page => 20)

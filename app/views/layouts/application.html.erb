@@ -13,6 +13,6 @@
     <%= content_tag :div, msg, class: name %>
   <% end %>
 <%= yield %>
-<%= render partial: "./partials/footer" %>
+<%= render partial: "./partials/footer" unless @disable_footer%>
 </body>
 </html>

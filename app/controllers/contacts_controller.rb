@@ -2,10 +2,6 @@ class ContactsController < ApplicationController
   before_action :set_contact, only: [:destroy, :update, :edit]
   before_action :set_company, only: [:destroy, :update, :edit]
 
-  def index
-    @contact = Contact.all
-  end
-
   def new
     @contact = Contact.new
   end

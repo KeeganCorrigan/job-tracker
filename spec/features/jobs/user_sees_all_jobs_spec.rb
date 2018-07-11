@@ -74,6 +74,7 @@ describe "User visits jobs index" do
     expect(page).to have_content(job_1.title)
     expect(page).to_not have_content(job_2.title)
   end
+
   it "can order by interest" do
     company = Company.create!(name: "ESPN")
     category = Category.create!(title: "ojiasd")
@@ -84,5 +85,17 @@ describe "User visits jobs index" do
 
     expect(page).to have_content(job_1.title)
     expect(page).to have_content(job_2.title)
+  end
+
+  it "can order by location" do
+    company = Company.create!(name: "ESPN")
+    category = Category.create!(title: "ojiasd")
+    job_1 = company.jobs.create!(title: "Developer", level_of_interest: 80, description: 'adfj', city: "Denver", category: category)
+    job_2 = company.jobs.create!(title: "QA Analyst", level_of_interest: 70, description: 'adfj', city: "New York City", category: category)
+
+    visit 'jobs?sort=location'
+
+    expect(page).to have_content(job_1.city)
+    expect(page).to have_content(job_2.city)
   end
 end

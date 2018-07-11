@@ -23,6 +23,15 @@ describe 'user visits company' do
     expect(Contact.count).to eq(2)
   end
 
+  it "clicks create without adding content" do
+    visit company_path(@company)
+
+    click_button "Create Contact"
+
+    expect(current_path).to eq(company_path(@company))
+    expect(Contact.count).to eq(1)
+  end
+
   describe "user deletes existing contact" do
     it "can delete a contact" do
 
@@ -53,5 +62,23 @@ describe 'user visits company' do
     expect(page).to have_content("Developer")
     expect(page).to have_content("So fun!")
     expect(page).to have_content("newpos")
-    end
   end
+
+  it 'updates a contact without filling out form completely' do
+    visit company_path(@company)
+
+    click_on "edit"
+
+    expect(current_path).to eq(edit_company_contact_path(@company, @contact))
+
+    fill_in "contact[full_name]", with: ""
+    fill_in "contact[email]", with: "So fun!"
+    fill_in "contact[position]", with: ""
+
+    click_on "Update"
+
+    expect(current_path).to eq(company_contact_path(@company, @contact))
+    expect(page).to have_content("Full name can't be blank")
+    expect(page).to have_content("Position can't be blank")
+  end
+end

@@ -6,5 +6,4 @@ class Company < ApplicationRecord
   def self.sort_companies_by_interest
     Company.joins(:jobs).group(:id).order('avg(level_of_interest) desc').take(3)
   end
-
 end

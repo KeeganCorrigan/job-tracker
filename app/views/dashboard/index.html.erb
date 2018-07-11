@@ -1,13 +1,28 @@
 <main>
 <h1 class="company-head">Dashboard</h1>
 
-<h2>Level of interest</h2>
-<%= pie_chart @job_level_of_interest, donut: true, legend: "left", label: "jobs" %>
+<div class="row dashboard-row">
+  <div class="col-6">
+    <h3 class="company-head">Level of interest</h3>
+    <%= pie_chart @job_level_of_interest.to_a, donut: true, legend: "left", label: "jobs" %>
+  </div>
+  <div class="col-6">
+    <h3 class="company-head">Jobs by Interest:<h3>
+    <ul>
+      <li class="list-text"><i class="far fa-frown"></i><%= link_to "Not interested", "/jobs?interest=1" %> <%= @job_level_of_interest.to_a[0][1] %> jobs</li>
+      <li class="list-text"><i class="far fa-frown-open"></i><%= link_to "It pays the bills", "/jobs?interest=2" %> <%= @job_level_of_interest.to_a[1][1] %> jobs</li>
+      <li class="list-text"><i class="far fa-meh"></i><%= link_to "It's fine", "/jobs?interest=3" %> <%= @job_level_of_interest.to_a[2][1] %> jobs</li>
+      <li class="list-text"><i class="far fa-grin-alt"></i><%= link_to "Interested", "/jobs?interest=4" %> <%= @job_level_of_interest.to_a[3][1] %> jobs</li>
+      <li class="list-text"><i class="far fa-laugh-beam"></i><%= link_to "Must have", "/jobs?interest=5" %> <%= @job_level_of_interest.to_a[4][1] %> jobs</li>
+    </ul>
+    <%= link_to "all jobs sorted by interest", "/jobs?sort=interest" %>
+  </div>
+</div>
 <h2>Jobs by city</h2>
 <%= line_chart @job_grouped_by_city, label: "Jobs", curve: false %>
 <div class="row dashboard-row">
   <div class="col-6">
-    <h3 class="company-head">Link to job by location:<h3>
+    <h3 class="company-head">Jobs by location:<h3>
       <div class="row">
       <% @job_grouped_by_city.each do |city|  %>
       <div class="col-sm-6">
@@ -18,6 +33,9 @@
   </div>
   <div class="col-6">
     <h3 class="company-head">Top three companies:</h3>
+      <% @top_three_companies.each do |company| %>
+      <p class="top-company-text"><%= link_to company.name, company_path(company)%></p>
+      <% end %>
   </div>
 </div>
 </main>

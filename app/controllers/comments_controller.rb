@@ -2,7 +2,6 @@ class CommentsController < ApplicationController
   before_action :set_comment, only: [:destroy, :update, :edit]
   before_action :set_job, only: [:destroy, :update, :edit]
 
-
   def create
     @job = Job.find(params[:job_id])
     @comment = @job.comments.new(comment_params)
@@ -25,7 +24,7 @@ class CommentsController < ApplicationController
       redirect_to job_path(@job)
     else
       flash.now[:alert] = @comment.errors.full_messages.join("<br>").html_safe
-      redirect_to job_path(@job)
+      render :edit
     end
   end
 

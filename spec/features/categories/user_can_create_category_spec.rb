@@ -27,4 +27,14 @@ describe "User creates a new category" do
     expect(page).to have_content("Create a new category here!")
     expect(Category.all.length).to eq(1)
   end
+
+  it 'uses existing catetory name, is redirected to category form' do
+    visit new_category_path
+
+    click_button "Create"
+
+    expect(current_path).to eq(categories_path)
+    expect(page).to have_content("Title can't be blank")
+    expect(Category.count).to eq(0)
+  end
 end

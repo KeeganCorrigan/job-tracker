@@ -22,7 +22,7 @@
     <%= link_to edit_category_path(category) do %>
     <i class="far fa-edit" id="edit-<%= category.id%>"><span class="hidden">edit</span></i>
     <% end %>
-    <%= link_to category_path(category), method: "delete" do %>
+    <%= link_to category_path(category), method: "delete", data: {confirm: "Are you sure? This will remove all associated jobs!"} do %>
     <i class="far fa-trash-alt"><span class="hidden">delete</span></i>
     <% end %>
   </div>

@@ -17,7 +17,10 @@ class CategoriesController < ApplicationController
 
   def create
     @category = Category.new(category_params)
-    if @category.save
+    if Category.exists?(title: category_params[:title])
+      flash.now[:alert] = @category.errors.full_messages.join("<br>").html_safe
+      render :new
+    elsif @category.save
       flash[:success] = "#{@category.title} added!"
       redirect_to categories_path
     else

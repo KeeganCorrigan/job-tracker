@@ -24,7 +24,7 @@
                 <%= link_to edit_company_contact_path(contact.company, contact) do %>
                   <i class="far fa-edit" id="edit-contact"><span class="hidden">edit</span></i>
                 <% end %>
-                <%= link_to company_contact_path(@company, contact), method: "delete" do %>
+                <%= link_to company_contact_path(@company, contact), method: "delete", data: {confirm: "Are you sure?"} do %>
                 <i class="far fa-trash-alt"><span class="hidden">delete</span></i>
                 <% end %>
               </div>

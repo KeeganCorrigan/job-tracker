@@ -35,4 +35,17 @@ describe "User creates a new job" do
 
     expect(current_path).to eq(new_category_path)
   end
+  scenario "user fails to fill out form and clicks create" do
+    company = Company.create!(name: "ESPN")
+    category_1 = Category.create!(title: "iuasd")
+
+    visit new_job_path
+
+    click_button "Create"
+
+    expect(current_path).to eq(jobs_path)
+    expect(page).to have_content("Title can't be blank")
+    expect(page).to have_content("Description can't be blank")
+    expect(page).to have_content("City can't be blank")
+  end
 end

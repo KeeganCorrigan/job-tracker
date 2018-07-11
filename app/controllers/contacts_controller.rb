@@ -1,11 +1,7 @@
 class ContactsController < ApplicationController
   before_action :set_contact, only: [:destroy, :update, :edit]
   before_action :set_company, only: [:destroy, :update, :edit]
-
-  def new
-    @contact = Contact.new
-  end
-
+  
   def create
     @company = Company.find(params[:company_id])
     @contact = @company.contacts.new(contact_params)
